@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 The demo project is still in progress.
 
-This is a project for a series of posts on my blog which focuses on using Angular for the frontend, and TypeScript, Express & Mongoose for the backend:
+It is a project for a series of posts on my blog in which I focus on the fundamentals of using Angular for the frontend, and TypeScript, Express & Mongoose for the backend:
 
 Learning the Angular Way (I): https://dcufo.com/2021/06/20/60-learning-the-angular-way-i/
 
