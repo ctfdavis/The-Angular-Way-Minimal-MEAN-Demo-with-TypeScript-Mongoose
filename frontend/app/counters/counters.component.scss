@@ -1,0 +1,58 @@
+.counter {
+    color: #cccccc;
+    background-color: #e3fddb;
+    font-size: 2rem;
+    width: 30rem;
+    height: 20rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+
+    &--left,
+    &--right {
+        flex-direction: column;
+        margin: 0;
+        justify-content: center;
+    }
+
+    &--right {
+        align-items: flex-start;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+    }
+
+    &__title,
+    &__desc {
+        color: #000;
+    }
+
+    &__title {
+        font-weight: 800;
+    }
+
+    &__desc {
+        font-size: 1rem;
+    }
+}
+
+.count {
+    cursor: not-allowed;
+    user-select: none;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    &--up {
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent #cccccc transparent;
+    }
+    &--down {
+        border-width: 10px 10px 0 10px;
+        border-color: #cccccc transparent transparent transparent;
+    }
+}

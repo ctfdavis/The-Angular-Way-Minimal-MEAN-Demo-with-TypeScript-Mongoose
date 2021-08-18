@@ -1,0 +1,21 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+* {
+    margin: 0;
+    padding: 0;
+}
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; // for making 1rem = 10px
+}
+body {
+	font-family: "Nunito Sans";
+	line-height: 1.6;
+}
+

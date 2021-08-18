@@ -1,0 +1,30 @@
+<!-- <form [formGroup]="counterForm" (ngSubmit)="onSubmit(counterForm.value)">
+    <div class="form-group">
+        <label for="count">Count</label>
+        <input type="number" id="count" class="form-control" formControlName="count">
+    </div>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" class="form-control" formControlName="title">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" class="form-control" formControlName="description">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form> -->
+<form #counterForm="ngForm" (ngSubmit)="onSubmit(counterForm.value)" ngNativeValidate>
+    <div class="form-group">
+        <label for="count">Count</label>
+        <input type="number" id="count" class="form-control" ngModel name="count" #count>
+    </div>
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" class="form-control" required ngModel name="title">
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" id="description" class="form-control" ngModel name="description">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
