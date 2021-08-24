@@ -1,4 +1,5 @@
-import { DocumentDefinition, FilterQuery, UpdateQuery } from "mongoose";
+import Counter, { CounterDoc } from "models/counter.model";
+import { DocumentDefinition, FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
 
 export async function createCounter(data: DocumentDefinition<CounterDoc>) {
     try {

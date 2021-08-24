@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCounter } from "services/counter.service";
+import { createCounter, updateCounter, listCounter, deleteCounter, findCounter, } from "../services/counter.service";
 
 export async function createCounterHandler(req: Request, res: Response) {
   try {
@@ -13,7 +13,7 @@ export async function createCounterHandler(req: Request, res: Response) {
 
 export async function updateCounterHandler(req: Request, res: Response) {
   try {
-    const counter = await updateCounter(req.body);
+    const counter = await updateCounter(req.body, req.params.id);
     return res.send(counter.toJSON());
   } catch (e) {
     console.log(e);
@@ -34,7 +34,7 @@ export async function deleteCounterHandler(req: Request, res: Response) {
 export async function listCounterHandler(req: Request, res: Response){
     try {
         const counters = await listCounter();
-        return res.send(counters.toJSON());
+        return res.send(counters);
     } catch (e){
         console.log(e);
         return res.status(500).send(e.message);
