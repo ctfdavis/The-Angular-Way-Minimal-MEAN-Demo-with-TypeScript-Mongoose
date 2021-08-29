@@ -9,7 +9,7 @@ export interface CounterDoc extends Document {
 const CounterSchema = new mongoose.Schema(
   {
     counter: { type: Number, default: true },
-    title: { type: String, default: true },
+    title: { type: String, default: true, unique: true, trim: true },
     description: { type: String, default: true },
   },
   { timestamps: true }

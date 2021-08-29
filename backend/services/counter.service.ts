@@ -1,4 +1,4 @@
-import Counter, { CounterDoc } from "models/counter.model";
+import Counter, { CounterDoc } from "../models/counter.model";
 import { DocumentDefinition, FilterQuery, QueryOptions, UpdateQuery } from "mongoose";
 
 export async function createCounter(data: DocumentDefinition<CounterDoc>) {
@@ -12,7 +12,7 @@ export async function createCounter(data: DocumentDefinition<CounterDoc>) {
 
 export async function updateCounter(query: FilterQuery<CounterDoc>, data: UpdateQuery<CounterDoc>) {
     try {
-        return await Counter.findByIdAndUpdate(query, data);
+        return await Counter.findByIdAndUpdate(query._id, data);
     } catch(error) {
         throw new Error(`Error updating counter: ${error}`);
     }
@@ -27,5 +27,5 @@ export async function listCounter() {
 }
 
 export async function findCounter(query: FilterQuery<CounterDoc>, options: QueryOptions = { lean: true }) {
-    return await Counter.findOne(query, {}, options);
+    return await Counter.findOne(query.id, {}, options);
 }

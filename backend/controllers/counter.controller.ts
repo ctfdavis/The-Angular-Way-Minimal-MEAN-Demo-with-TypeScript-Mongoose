@@ -13,7 +13,7 @@ export async function createCounterHandler(req: Request, res: Response) {
 
 export async function updateCounterHandler(req: Request, res: Response) {
   try {
-    const counter = await updateCounter({id: req.params.id}, req.body);
+    const counter = await updateCounter({_id: req.params.counterId}, req.body);
     return res.send(counter?.toJSON());
   } catch (e) {
     console.log(e);
@@ -23,7 +23,7 @@ export async function updateCounterHandler(req: Request, res: Response) {
 
 export async function deleteCounterHandler(req: Request, res: Response) {
     try {
-        await deleteCounter({id: req.params.id});
+        await deleteCounter({_id: req.params.counterId});
         return res.sendStatus(200);
     } catch (e){
         console.log(e);
@@ -43,7 +43,7 @@ export async function listCounterHandler(req: Request, res: Response){
 
 export async function getCounterHandler(req: Request, res: Response){
     try {
-        const counter = await findCounter({id: req.params.id});
+        const counter = await findCounter({_id: req.params.counterId});
         return res.send(counter?.toJSON());
     } catch (e) {
         console.log(e);

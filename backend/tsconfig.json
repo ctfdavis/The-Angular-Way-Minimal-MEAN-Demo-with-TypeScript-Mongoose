@@ -3,9 +3,10 @@
   "compilerOptions": {
     "outDir": "../dist/server",
     "baseUrl": "",
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "target": "es6",
-    "module": "commonjs"
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true
   },
+  "allowSyntheticDefaultImports": true
 }
