@@ -44,7 +44,7 @@ export async function listCounterHandler(req: Request, res: Response){
 export async function getCounterHandler(req: Request, res: Response){
     try {
         const counter = await findCounter({_id: req.params.counterId});
-        return res.send(counter?.toJSON());
+        return res.send(counter);
     } catch (e) {
         console.log(e);
         return res.status(500).send(e.message);
