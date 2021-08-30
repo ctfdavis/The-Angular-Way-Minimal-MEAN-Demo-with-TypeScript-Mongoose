@@ -1,64 +1,51 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { Subject, Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 import { Counter } from '../counters/counter.model';
-import { Subject } from 'rxjs';
+import { environment } from 'frontend/environments/environment';
+
+const baseUrl = `${environment.apiUrl}/counters`;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CounterService {
-  countersChanged = new Subject<Counter[]>();
+  constructor(private http: HttpClient) {}
 
-  currentId = 4;
-  public counters: Counter[] = [
-      { id: 1, count: 0, title: "Angular", description: "description 1" },
-      { id: 2, count: 0, title: "gaming", description: "description 2" },
-      { id: 3, count: 0, title: "blogging", description: "description 3" }
-  ]
-
-  getCounters(): Counter[] {
-    return this.counters;
+  getCounters(): Observable<Counter[]> {
+    return this.http.get<Counter[]>(`${baseUrl}`);
   }
 
-  getCurrentId(): number {
-    return this.currentId;
+  increment(counter: Counter): Observable<HttpResponse<Counter>> {
+    const { id, count, ...data } = counter;
+    return this.http.put<Counter>(
+      `${baseUrl}/${id}`,
+      { count: count + 1, ...data },
+      { observe: 'response' }
+    );
   }
 
-  increment(id: number): void {
-    for (let i = 0; i < this.counters.length; i++) {
-      if (this.counters[i].id === id) {
-        this.counters[i].count++;
-        break;
-      }
-    }
+  decrement(counter: Counter): Observable<HttpResponse<Counter>> {
+    const { id, count, ...data } = counter;
+    return this.http.put<Counter>(
+      `${baseUrl}/${id}`,
+      { count: count - 1, ...data },
+      { observe: 'response' }
+    );
   }
 
-  decrement(id: number): void {
-    for (let i = 0; i < this.counters.length; i++) {
-      if (this.counters[i].id === id) {
-        this.counters[i].count--;
-        break;
-      }
-    }
+  delete(id: string): Observable<HttpResponse<Counter>> {
+    return this.http.delete<Counter>(`${baseUrl}/${id}`, {
+      observe: 'response',
+    });
   }
 
-  delete(id: number): void {
-    this.counters = this.counters.filter(counter => counter.id !== id);
+  create(form: {
+    count: number;
+    title: string;
+    description: string;
+  }): Observable<Counter> {
+    return this.http.post<Counter>(baseUrl, form);
   }
-  
-  // generate(): void {
-  //   this.counters = [...this.counters, {id: this.currentId, count: 0, title: "", description: ""}]
-  //   this.currentId++;
-  // }
-
-  generate(form?: {count: number, title: string, description: string}): void {
-    if (form) {
-      this.counters = [...this.counters, {id: this.currentId, count: form.count || 0, title: form.title, description: form.description}]
-    } else {
-      this.counters = [...this.counters, {id: this.currentId, count: 0, title: "", description: ""}]
-    }
-    this.currentId++;
-    this.countersChanged.next(this.counters);
-  }
-
-  constructor() { }
 }

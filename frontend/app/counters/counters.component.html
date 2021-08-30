@@ -1,8 +1,8 @@
 <div class="counter" *ngFor="let counter of counters">
     <div class="counter counter--left">
-        <div (click)="increment(counter.id)" class="triangle triangle--up"></div>
+        <div (click)="increment(counter)" class="triangle triangle--up"></div>
         <div class="count">{{ counter.count }}</div>
-        <div (click)="decrement(counter.id)" class="triangle triangle--down"></div>
+        <div (click)="decrement(counter)" class="triangle triangle--down"></div>
         <button (click)="delete(counter.id)" type="button" class="btn btn-danger">delete</button>
     </div>
     <div class="counter counter--right">
