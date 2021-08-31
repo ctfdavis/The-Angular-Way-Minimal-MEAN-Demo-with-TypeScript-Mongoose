@@ -24,8 +24,7 @@ export async function updateCounterHandler(req: Request, res: Response) {
 export async function deleteCounterHandler(req: Request, res: Response) {
     try {
         await deleteCounter({_id: req.params.counterId});
-        // return res.sendStatus(200);
-        return res.status(200).send("Deleted");
+        return res.sendStatus(200);
     } catch (e){
         console.log(e);
         return res.status(500).send(e.message);
