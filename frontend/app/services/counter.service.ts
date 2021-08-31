@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Subject, Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { Counter } from '../counters/counter.model';
 import { environment } from 'frontend/environments/environment';
 
@@ -18,34 +17,32 @@ export class CounterService {
   }
 
   increment(counter: Counter): Observable<HttpResponse<Counter>> {
-    const { id, count, ...data } = counter;
+    const { _id, count, ...data } = counter;
     return this.http.put<Counter>(
-      `${baseUrl}/${id}`,
+      `${baseUrl}/${_id}`,
       { count: count + 1, ...data },
       { observe: 'response' }
     );
   }
 
   decrement(counter: Counter): Observable<HttpResponse<Counter>> {
-    const { id, count, ...data } = counter;
+    const { _id, count, ...data } = counter;
     return this.http.put<Counter>(
-      `${baseUrl}/${id}`,
+      `${baseUrl}/${_id}`,
       { count: count - 1, ...data },
       { observe: 'response' }
     );
   }
 
-  delete(id: string): Observable<HttpResponse<Counter>> {
-    return this.http.delete<Counter>(`${baseUrl}/${id}`, {
-      observe: 'response',
-    });
+  delete(id: string): Observable<any> {
+    return this.http.delete(`${baseUrl}/${id}`, { responseType: 'text' });
   }
 
   create(form: {
     count: number;
     title: string;
     description: string;
-  }): Observable<Counter> {
+  }): Observable<any> {
     return this.http.post<Counter>(baseUrl, form);
   }
 }

@@ -4,7 +4,9 @@ import {
   OnInit,
   AfterViewInit,
   ViewChild,
+  Input,
 } from '@angular/core';
+import { CountersComponent } from '../counters/counters.component';
 // import { FormBuilder, FormGroup } from '@angular/forms';
 import { CounterService } from '../services/counter.service';
 
@@ -15,6 +17,7 @@ import { CounterService } from '../services/counter.service';
 })
 export class CounterFormComponent implements OnInit, AfterViewInit {
   @ViewChild('count', { static: true }) count!: ElementRef;
+  @Input() countersRef!: CountersComponent;
   // counterForm: FormGroup;
 
   constructor(
@@ -38,6 +41,12 @@ export class CounterFormComponent implements OnInit, AfterViewInit {
 
   onSubmit(form: any) {
     console.log(form);
-    this.counterService.create(form);
+    this.create(form);
+  }
+
+  create(form: { count: number; title: string; description: string }): void {
+    this.counterService.create(form).subscribe(() => {
+        this.countersRef.getAll();
+    });
   }
 }

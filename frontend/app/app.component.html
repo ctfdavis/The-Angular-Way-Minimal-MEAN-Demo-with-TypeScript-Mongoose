@@ -1,6 +1,6 @@
 <h1>The Angular Way</h1>
 <div class="counterGroup mb-2">
-    <app-counters></app-counters>
+    <app-counters #counters></app-counters>
 </div>
 <button (click)="toggle()" type="button" class="btn btn-success ml-1">New Counter</button>
-<app-counter-form *ngIf="formDisplay"></app-counter-form>
+<app-counter-form *ngIf="formDisplay" [countersRef]="counters"></app-counter-form>

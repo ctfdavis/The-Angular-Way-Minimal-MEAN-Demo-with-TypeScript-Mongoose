@@ -1,11 +1,13 @@
-import { createCounterHandler, deleteCounterHandler, listCounterHandler, updateCounterHandler } from "../controllers/counter.controller";
+import { createCounterHandler, deleteCounterHandler, getCounterHandler, listCounterHandler, updateCounterHandler } from "../controllers/counter.controller";
 import express from "express";
 import validateReq from "../middleware/validateReq";
-import { createCounterSchema, deleteCounterSchema, updateCounterSchema } from "../schema/counter.schema";
+import { createCounterSchema, deleteCounterSchema, updateCounterSchema, getCounterSchema } from "../schema/counter.schema";
 
 const router = express.Router();
 
 router.get('/counters', listCounterHandler);
+
+router.get('/counters/:counterId', validateReq(getCounterSchema), getCounterHandler);
 
 router.post('/counters', validateReq(createCounterSchema), createCounterHandler);
 

@@ -10,9 +10,9 @@ export async function createCounter(data: DocumentDefinition<CounterDoc>) {
     }
 }
 
-export async function updateCounter(query: FilterQuery<CounterDoc>, data: UpdateQuery<CounterDoc>) {
+export async function updateCounter(query: FilterQuery<CounterDoc>, data: UpdateQuery<CounterDoc>,  options: QueryOptions = { new: true }) {
     try {
-        return await Counter.findByIdAndUpdate(query._id, data);
+        return await Counter.findByIdAndUpdate(query._id, data, options);
     } catch(error) {
         throw new Error(`Error updating counter: ${error}`);
     }

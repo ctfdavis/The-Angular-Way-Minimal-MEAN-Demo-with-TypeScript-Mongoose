@@ -1,5 +1,5 @@
 export interface Counter {
-   id: string;
+   _id: string;
    count: number; 
    title: string;
    description: string;
