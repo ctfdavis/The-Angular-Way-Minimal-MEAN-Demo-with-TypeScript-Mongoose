@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.4.
 
-The demo project is still in progress.
+The demo project is now completed.
 
 It is a project for a series of posts on my blog in which I focus on the fundamentals of using Angular for the frontend, and TypeScript, Express & Mongoose for the backend:
 
@@ -15,3 +15,5 @@ Building Node Server with TypeScript from the Ground up (1): https://dcufo.com/2
 Building Node Server with TypeScript from the Ground up (2): https://dcufo.com/2021/08/16/64-building-node-server-with-typescript-from-the-ground-up-2/
 
 Building Node Server with TypeScript from the Ground up (3): https://dcufo.com/2021/08/29/65-building-node-server-with-typescript-from-the-ground-up-3/
+
+Building Node Server with TypeScript from the Ground up (4) (End): https://dcufo.com/2021/08/30/66-building-node-server-with-typescript-from-the-ground-up-4-end/
